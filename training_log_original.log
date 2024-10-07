@@ -1,0 +1,27 @@
+2024-10-07 08:59:44,702 - Device being used: cuda:0
+2024-10-07 08:59:44,702 - Evaluating for input size 200 with original method
+2024-10-07 08:59:46,057 - Epoch 1/5
+2024-10-07 09:20:54,388 - train Loss: 0.7021 Acc: 0.7749
+2024-10-07 09:22:59,625 - dev Loss: 0.1969 Acc: 0.9369
+2024-10-07 09:23:00,027 - Epoch 2/5
+2024-10-07 09:44:26,214 - train Loss: 0.0618 Acc: 0.9799
+2024-10-07 09:46:34,903 - dev Loss: 0.1544 Acc: 0.9577
+2024-10-07 09:46:35,027 - Epoch 3/5
+2024-10-07 10:07:37,362 - train Loss: 0.0395 Acc: 0.9878
+2024-10-07 10:09:45,277 - dev Loss: 0.0067 Acc: 0.9980
+2024-10-07 10:09:45,297 - Epoch 4/5
+2024-10-07 10:31:43,195 - train Loss: 0.0257 Acc: 0.9919
+2024-10-07 10:33:53,164 - dev Loss: 0.0230 Acc: 0.9926
+2024-10-07 10:33:53,182 - Epoch 5/5
+2024-10-07 10:56:00,350 - train Loss: 0.0197 Acc: 0.9942
+2024-10-07 10:58:08,719 - dev Loss: 0.0014 Acc: 0.9995
+2024-10-07 10:58:09,858 - Model weights saved to model_weights_200_original.pth
+2024-10-07 11:00:27,317 - Test Accuracy: 0.9994
+2024-10-07 11:00:56,177 - Run 1/5, Latency: 0.001546 seconds per image
+2024-10-07 11:01:09,732 - Run 2/5, Latency: 0.001558 seconds per image
+2024-10-07 11:01:22,890 - Run 3/5, Latency: 0.001512 seconds per image
+2024-10-07 11:01:35,060 - Run 4/5, Latency: 0.001399 seconds per image
+2024-10-07 11:01:35,088 - Average Inference Latency (excluding first run): 0.001504 seconds per image
+2024-10-07 11:01:35,089 - Parameter Count: 23567453
+2024-10-07 11:01:35,089 - FLOPs: 3312770048
+2024-10-07 11:01:35,089 - Inference Latency: 0.001504 seconds per image
