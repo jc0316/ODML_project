@@ -115,13 +115,22 @@ example_input = torch.rand(1, 3, 64, 64)  # Batch size 1, 3 color channels, 200x
 # 3. Convert the model to TorchScript
 traced_model = torch.jit.trace(model, example_input)
 
-# 4. Convert the TorchScript model to CoreML format
+# Define the labels for the classes (A-Z, del, nothing, space)
+labels = [
+    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
+    'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 
+    'del', 'nothing', 'space'
+]
+
+# 4. Convert the TorchScript model to CoreML format with class labels
 mlmodel = ct.convert(
     traced_model,
-    inputs=[ct.TensorType(shape=example_input.shape)],  # Specify input shape (1, 3, 200, 200)
+    inputs=[ct.ImageType(name="image", shape=example_input.shape)],  # Specify input shape and name
+    classifier_config=ct.ClassifierConfig(class_labels=labels, predicted_feature_name="classLabel"),  # Add class label config
+    outputs=[ct.TensorType(name="classLabelProbs", shape=(1, 29))]  # Specify output probabilities
 )
 
 # 5. Save the CoreML model to a file
 mlmodel.save("model_weights_64_center_crop.mlpackage")
 
-print("Model successfully converted and saved as model_weights_64_center_crop.mlpackage")
+print("Model successfully converted and saved as model_weights_64_center_crop.mlpackage with labels")
