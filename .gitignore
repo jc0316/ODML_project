@@ -163,3 +163,5 @@ cython_debug/
 
 /data/asl_alphabet_train
 /data/asl_alphabet_test
+/data/mnist_train.csv
+/data/mnist_test.csv
