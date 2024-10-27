@@ -165,3 +165,5 @@ cython_debug/
 /data/asl_alphabet_test
 /data/mnist_train.csv
 /data/mnist_test.csv
+
+#/ClassifyingImagesWithVisionAndCoreML/Vision+Core-ML.xcodeproj
