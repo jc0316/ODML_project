@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,9 @@
 		7CA48C042CB808DB00F2F393 /* model_64_cc.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7CA48C032CB808DB00F2F393 /* model_64_cc.mlmodel */; };
 		7CA48C062CB808E300F2F393 /* model_64_resize.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7CA48C052CB808E300F2F393 /* model_64_resize.mlmodel */; };
 		7CA48C0A2CB8307C00F2F393 /* model_original.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7CA48C092CB8307C00F2F393 /* model_original.mlmodel */; };
+		AF274CDA2CCF3C160066C7F4 /* LLM in Frameworks */ = {isa = PBXBuildFile; productRef = AF274CD92CCF3C160066C7F4 /* LLM */; };
+		AF274CDC2CCF3CB90066C7F4 /* LLM in Frameworks */ = {isa = PBXBuildFile; productRef = AF274CDB2CCF3CB90066C7F4 /* LLM */; };
+		AF274CE32CCF49F10066C7F4 /* Bot.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF274CE12CCF49130066C7F4 /* Bot.swift */; };
 		EB6D4EB126BA58FC00DCF755 /* MobileNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = EB6D4EAF26BA58FC00DCF755 /* MobileNet.mlmodel */; };
 		EB6D4EB526BA5A0000DCF755 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB6D4EB326BA5A0000DCF755 /* LaunchScreen.storyboard */; };
 		EB6D4EBA26BA5A2F00DCF755 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB6D4EB826BA5A2F00DCF755 /* Main.storyboard */; };
@@ -37,6 +40,7 @@
 		7CA48C052CB808E300F2F393 /* model_64_resize.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = model_64_resize.mlmodel; sourceTree = "<group>"; };
 		7CA48C092CB8307C00F2F393 /* model_original.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = model_original.mlmodel; sourceTree = "<group>"; };
 		83D09BCE84BD8F0B0100E8B3 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		AF274CE12CCF49130066C7F4 /* Bot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bot.swift; sourceTree = "<group>"; };
 		C858E5CC1ECA99CC006C5CAA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EB6D4EAF26BA58FC00DCF755 /* MobileNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNet.mlmodel; sourceTree = "<group>"; };
 		EB6D4EB426BA5A0000DCF755 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -52,6 +56,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF274CDC2CCF3CB90066C7F4 /* LLM in Frameworks */,
+				AF274CDA2CCF3C160066C7F4 /* LLM in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +75,7 @@
 		11063F551EC0EECC0033EE6D = {
 			isa = PBXGroup;
 			children = (
+				AF274CE22CCF49130066C7F4 /* LLM */,
 				C858E5CC1ECA99CC006C5CAA /* README.md */,
 				C82A1C951F1809F5005996F6 /* Main View */,
 				EBB87B3126C2EC2300AB49D8 /* Image Predictor */,
@@ -106,6 +113,14 @@
 				7A862B3053580E92D52AA6E3 /* SampleCode.xcconfig */,
 			);
 			name = Configuration;
+			sourceTree = "<group>";
+		};
+		AF274CE22CCF49130066C7F4 /* LLM */ = {
+			isa = PBXGroup;
+			children = (
+				AF274CE12CCF49130066C7F4 /* Bot.swift */,
+			);
+			path = LLM;
 			sourceTree = "<group>";
 		};
 		C82A1C951F1809F5005996F6 /* Main View */ = {
@@ -194,6 +209,9 @@
 				Base,
 			);
 			mainGroup = 11063F551EC0EECC0033EE6D;
+			packageReferences = (
+				AF274CD82CCF3C160066C7F4 /* XCLocalSwiftPackageReference "../../LLM.swift-main" */,
+			);
 			productRefGroup = 11063F5F1EC0EECC0033EE6D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -223,6 +241,7 @@
 			files = (
 				EB6D4EB126BA58FC00DCF755 /* MobileNet.mlmodel in Sources */,
 				EBE769EA26CC7DDD002B6CF0 /* VNClassificationObservation+confidenceString.swift in Sources */,
+				AF274CE32CCF49F10066C7F4 /* Bot.swift in Sources */,
 				EB9D7ECA26C2D39400039949 /* MainViewController+PhotoPicker.swift in Sources */,
 				11063F741EC0F5270033EE6D /* CGImagePropertyOrientation+UIImageOrientation.swift in Sources */,
 				11063F641EC0EECC0033EE6D /* MainViewController.swift in Sources */,
@@ -369,7 +388,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -383,9 +403,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COREML_CODEGEN_LANGUAGE = Swift;
-				DEVELOPMENT_TEAM = J46GKGDW92;
+				DEVELOPMENT_TEAM = 4CWWUMP8QY;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.Vision-Core-ML${SAMPLE_CODE_DISAMBIGUATOR}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -402,9 +426,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COREML_CODEGEN_LANGUAGE = Swift;
-				DEVELOPMENT_TEAM = J46GKGDW92;
+				DEVELOPMENT_TEAM = 4CWWUMP8QY;
 				INFOPLIST_FILE = "$(SRCROOT)/App/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.Vision-Core-ML${SAMPLE_CODE_DISAMBIGUATOR}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -435,6 +463,24 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		AF274CD82CCF3C160066C7F4 /* XCLocalSwiftPackageReference "../../LLM.swift-main" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../../LLM.swift-main";
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AF274CD92CCF3C160066C7F4 /* LLM */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LLM;
+		};
+		AF274CDB2CCF3CB90066C7F4 /* LLM */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LLM;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 11063F561EC0EECC0033EE6D /* Project object */;
 }

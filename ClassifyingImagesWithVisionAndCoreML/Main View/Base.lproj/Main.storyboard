@@ -18,14 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ikj-rf-AXs">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="hEF-lt-K0R" appends="YES" id="wlE-TX-EhA"/>
-                                    <outletCollection property="gestureRecognizers" destination="vs7-vX-fTG" appends="YES" id="NZ6-WC-Ker"/>
-                                </connections>
-                            </imageView>
                             <view hidden="YES" contentMode="scaleToFill" semanticContentAttribute="playback" translatesAutoresizingMaskIntoConstraints="NO" id="F7f-ZV-5pr" userLabel="Prediction View">
                                 <rect key="frame" x="20" y="792" width="209.5" height="64"/>
                                 <subviews>
@@ -67,6 +59,27 @@
                                     <action selector="testModel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nNu-v1-VQu"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CWA-dk-mT4">
+                                <rect key="frame" x="159" y="684" width="97" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ikj-rf-AXs">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="hEF-lt-K0R" appends="YES" id="wlE-TX-EhA"/>
+                                    <outletCollection property="gestureRecognizers" destination="vs7-vX-fTG" appends="YES" id="NZ6-WC-Ker"/>
+                                </connections>
+                            </imageView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JZ4-gW-Uwk">
+                                <rect key="frame" x="87" y="656" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="CQo-lf-uei" kind="embed" id="9K9-pY-1cc"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Gj5-Ut-Web"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -82,6 +95,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="containerView" destination="JZ4-gW-Uwk" id="8JA-8m-M1t"/>
                         <outlet property="imageView" destination="ikj-rf-AXs" id="MjC-cW-qE8"/>
                         <outlet property="predictionLabel" destination="zmt-pk-Cvs" id="Icz-Lh-paq"/>
                         <outlet property="startupPrompts" destination="Ff1-e9-ozN" id="UOi-yZ-jzV"/>
@@ -101,10 +115,24 @@
             </objects>
             <point key="canvasLocation" x="139.5" y="138.5"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="rV4-lS-R2S">
+            <objects>
+                <viewController id="CQo-lf-uei" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="h5P-xk-2Xx">
+                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OrF-WM-ny1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-397" y="76"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
