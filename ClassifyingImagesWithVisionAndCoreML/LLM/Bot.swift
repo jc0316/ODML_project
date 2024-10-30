@@ -9,6 +9,7 @@
 
 import SwiftUI
 import LLM
+//Johnny make Brian sad
 
 class Bot: LLM {
     convenience init?(_ update: @escaping (Double) -> Void) async {
