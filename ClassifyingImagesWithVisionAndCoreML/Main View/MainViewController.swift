@@ -5,6 +5,7 @@ Abstract:
 The view controller that selects an image and makes a prediction using Vision and Core ML.
 */
 
+import Vision
 import UIKit
 import Dispatch
 
@@ -46,8 +47,29 @@ extension MainViewController {
     @IBAction func testModel(_ sender: Any) {
         print("Test Button Pressed")
         
+        let defaultConfig = MLModelConfiguration()
+
+        // Create an instance of the image classifier's wrapper class.
+        
+        let imageClassifierWrapper = try? model_original(configuration: defaultConfig)
+        //let imageClassifierWrapper = try? MobileNet(configuration: defaultConfig)
+
+        guard let imageClassifier = imageClassifierWrapper else {
+            fatalError("App failed to create an image classifier model instance.")
+        }
+
+        // Get the underlying model instance.
+        let imageClassifierModel = imageClassifier.model
+
+        // Create a Vision instance using the image classifier's model instance.
+        guard let imageClassifierVisionModel = try? VNCoreMLModel(for: imageClassifierModel) else {
+            fatalError("App failed to create a `VNCoreMLModel` instance.")
+        }
+        
         var inferenceTime: [Double] = []
-        var inferenceTimeString: [String] = []
+        
+        var correctPredictions: Int = 0
+        var totalPredictions: Int = 0
         
         let ImageTypes = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "space", "nothing", "del"]
         for type in ImageTypes {
@@ -55,23 +77,38 @@ extension MainViewController {
                 let imageName = type + String(number)
                 if let testImage = UIImage(named: imageName) {
                     print("Image Loaded: \(imageName)")
-                    let startTime = DispatchTime.now()
-                    self.classifyImage(testImage)
-                    let endTime = DispatchTime.now()
-                    
-                    let nanoseconds = endTime.uptimeNanoseconds - startTime.uptimeNanoseconds
-                    
-                    // Measure inference latency
-                    inferenceTime.append(Double(nanoseconds)/1_000_000_000.0)
-                    inferenceTimeString.append(String(Double(nanoseconds)/1_000_000_000.0))
-                    
+
+                    classifyImage(testImage, model: imageClassifierVisionModel, correctString: type) { result, time, error in
+                        if let error = error {
+                            // Handle error case
+                            print("Error:", error.localizedDescription)
+                        } else if let result = result, let time = time {
+                            // Handle success case
+                            print("Classification result:", result)
+                            print("Computation time:", time, "seconds")
+                        } else {
+                            // Handle unexpected cases if needed
+                            print("Unexpected result with no errors.")
+                        }
+                        if result!.contains(type){
+                            correctPredictions += 1
+                        }
+                        totalPredictions += 1
+                        inferenceTime.append(time!)
+                    }
+                
                 } else {
                     print("Image Failed to Load: \(imageName)")
                 }
             }
         }
-        print(inferenceTime)
-        saveListToFile(list: inferenceTimeString, fileName: "BaseModelInferenceTime")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
+            //call any function
+            print("Inference Time:")
+            print(inferenceTime)
+            print("Model Accuracy:")
+            print(Double(correctPredictions)/Double(totalPredictions))
+        }
     }
     
     func saveListToFile(list: [String], fileName: String) {
@@ -172,5 +209,55 @@ extension MainViewController {
         }
 
         return topPredictions
+    }
+}
+
+extension MainViewController {
+    
+    
+    func classifyImage(_ image: UIImage, model: VNCoreMLModel, correctString: String, completion: @escaping (String?, TimeInterval?, Error?) -> Void) {
+        // Convert UIImage to CIImage
+        guard let ciImage = CIImage(image: image) else {
+            completion(nil, nil, NSError(domain: "ImageConversionError", code: -1, userInfo: [NSLocalizedDescriptionKey: "Could not convert UIImage to CIImage"]))
+            return
+        }
+        
+        // Start time measurement
+        let startTime = Date()
+        
+        // Create a VNCoreMLRequest with the provided model
+        let request = VNCoreMLRequest(model: model) { (request, error) in
+            // End time measurement
+            let endTime = Date()
+            let computationTime = endTime.timeIntervalSince(startTime)
+            
+            if let error = error {
+                completion(nil, computationTime, error)
+                return
+            }
+            
+            // Process classification results
+            guard let results = request.results as? [VNClassificationObservation], let topResult = results.first else {
+                completion(nil, computationTime, NSError(domain: "ClassificationError", code: -1, userInfo: [NSLocalizedDescriptionKey: "No classification results found"]))
+                return
+            }
+            
+            // Return the top classification result along with computation time
+            completion(topResult.identifier, computationTime, nil)
+        }
+        
+        request.imageCropAndScaleOption = .centerCrop
+        
+        // Create a VNImageRequestHandler and perform the request
+        let handler = VNImageRequestHandler(ciImage: ciImage, options: [:])
+        DispatchQueue.global().async {
+            do {
+                try handler.perform([request])
+            } catch {
+                let endTime = Date()
+                let computationTime = endTime.timeIntervalSince(startTime)
+                completion(nil, computationTime, error)
+            }
+        }
     }
 }

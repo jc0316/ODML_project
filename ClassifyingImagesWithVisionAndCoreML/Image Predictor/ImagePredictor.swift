@@ -25,7 +25,7 @@ class ImagePredictor {
 
         // Create an instance of the image classifier's wrapper class.
         
-        let imageClassifierWrapper = try? model_original_int8_static_linear(configuration: defaultConfig)
+        let imageClassifierWrapper = try? model_original(configuration: defaultConfig)
         //let imageClassifierWrapper = try? MobileNet(configuration: defaultConfig)
 
         guard let imageClassifier = imageClassifierWrapper else {
@@ -47,7 +47,7 @@ class ImagePredictor {
     ///
     /// Share one ``VNCoreMLModel`` instance --- for each Core ML model file --- across the app,
     /// since each can be expensive in time and resources.
-    private static let imageClassifier = createImageClassifier()
+    public static let imageClassifier = createImageClassifier()
 
     /// Stores a classification name and confidence for an image classifier's prediction.
     /// - Tag: Prediction
