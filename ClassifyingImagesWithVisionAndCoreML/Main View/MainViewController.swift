@@ -51,7 +51,7 @@ extension MainViewController {
 
         // Create an instance of the image classifier's wrapper class.
         
-        let imageClassifierWrapper = try? model_original(configuration: defaultConfig)
+        let imageClassifierWrapper = try? model_original_int8_static_linear(configuration: defaultConfig)
         //let imageClassifierWrapper = try? MobileNet(configuration: defaultConfig)
 
         guard let imageClassifier = imageClassifierWrapper else {
@@ -77,24 +77,24 @@ extension MainViewController {
                 let imageName = type + String(number)
                 if let testImage = UIImage(named: imageName) {
                     print("Image Loaded: \(imageName)")
-
+                    
                     classifyImage(testImage, model: imageClassifierVisionModel, correctString: type) { result, time, error in
-                        if let error = error {
-                            // Handle error case
-                            print("Error:", error.localizedDescription)
-                        } else if let result = result, let time = time {
-                            // Handle success case
-                            print("Classification result:", result)
-                            print("Computation time:", time, "seconds")
-                        } else {
-                            // Handle unexpected cases if needed
-                            print("Unexpected result with no errors.")
-                        }
-                        if result!.contains(type){
-                            correctPredictions += 1
-                        }
-                        totalPredictions += 1
-                        inferenceTime.append(time!)
+                            if let error = error {
+                                // Handle error case
+                                print("Error:", error.localizedDescription)
+                            } else if let result = result, let time = time {
+                                // Handle success case
+                                print("Classification result:", result)
+                                print("Computation time:", time, "seconds")
+                            } else {
+                                // Handle unexpected cases if needed
+                                print("Unexpected result with no errors.")
+                            }
+                            if result!.contains(type){
+                                correctPredictions += 1
+                            }
+                            totalPredictions += 1
+                            inferenceTime.append(time!)
                     }
                 
                 } else {
