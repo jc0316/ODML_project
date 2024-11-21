@@ -8,22 +8,102 @@ The view controller that selects an image and makes a prediction using Vision an
 import Vision
 import UIKit
 import Dispatch
+import LLM
 
 class MainViewController: UIViewController {
     var firstRun = true
-
-    /// A predictor instance that uses Vision and Core ML to generate prediction strings from a photo.
     let imagePredictor = ImagePredictor()
-
-    /// The largest number of predictions the main view controller displays the user.
     let predictionsToShow = 1
-
+    
     // MARK: Main storyboard outlets
     @IBOutlet weak var startupPrompts: UIStackView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var predictionLabel: UILabel!
+    @IBOutlet weak var containerView: UIView!
     
     var testingBool = true
+    
+    // LLM-related properties
+    private var botHostingController: UIHostingController<BotContainerView>?
+    private var bot: Bot?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupLLMView()
+    }
+    
+    private func setupLLMView() {
+        // Create a container view that combines the bot view with any additional UI elements
+        let botContainerView = BotContainerView()
+        
+        // Create a hosting controller to bridge SwiftUI to UIKit
+        let hostingController = UIHostingController(rootView: botContainerView)
+        
+        // Add as child view controller
+        addChild(hostingController)
+        
+        // Configure the frame and add to view hierarchy
+        hostingController.view.frame = view.bounds
+        hostingController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(hostingController.view)
+        
+        // Complete the parent-child relationship
+        hostingController.didMove(toParent: self)
+        
+        // Store reference
+        self.botHostingController = hostingController
+        
+        // Ensure the LLM view doesn't cover other important UI elements
+        //view.bringSubviewToFront(imageView)
+        //view.bringSubviewToFront(predictionLabel)
+        if let promptsView = startupPrompts {
+            view.bringSubviewToFront(promptsView)
+        }
+    }
+}
+
+// SwiftUI container view to manage the Bot and ContentView
+struct BotContainerView: View {
+    @StateObject private var viewModel = BotContainerViewModel()
+    
+    var body: some View {
+        VStack {
+            Spacer() // Push the bot view to the bottom
+            if let bot = viewModel.bot {
+                BotView(bot)
+                    .frame(height: 200) // Adjust height as needed
+            } else {
+                ProgressView(value: viewModel.progress) {
+                    Text("Loading Hugging Face model...")
+                } currentValueLabel: {
+                    Text(String(format: "%.2f%%", viewModel.progress * 100))
+                }
+                .padding()
+            }
+        }
+        .onAppear {
+            viewModel.initializeBot()
+        }
+    }
+}
+
+// ViewModel to manage the Bot's state
+class BotContainerViewModel: ObservableObject {
+    @Published var bot: Bot?
+    @Published var progress: CGFloat = 0
+    
+    func updateProgress(_ progress: Double) {
+        self.progress = CGFloat(progress)
+    }
+    
+    func initializeBot() {
+        Task {
+            let newBot = await Bot(updateProgress)
+            await MainActor.run {
+                self.bot = newBot
+            }
+        }
+    }
 }
 
 extension MainViewController {
