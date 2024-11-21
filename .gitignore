@@ -167,3 +167,5 @@ cython_debug/
 /data/mnist_test.csv
 
 #/ClassifyingImagesWithVisionAndCoreML/Vision+Core-ML.xcodeproj
+/data/data
+/models
