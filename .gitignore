@@ -170,3 +170,4 @@ cython_debug/
 #/ClassifyingImagesWithVisionAndCoreML/Vision+Core-ML.xcodeproj
 /models
 /data/data
+.DS_Store
