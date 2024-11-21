@@ -47,7 +47,7 @@ class ImagePredictor {
     ///
     /// Share one ``VNCoreMLModel`` instance --- for each Core ML model file --- across the app,
     /// since each can be expensive in time and resources.
-    private static let imageClassifier = createImageClassifier()
+    public static let imageClassifier = createImageClassifier()
 
     /// Stores a classification name and confidence for an image classifier's prediction.
     /// - Tag: Prediction
