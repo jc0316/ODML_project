@@ -170,3 +170,4 @@ cython_debug/
 /models/*
 .venv/
 /data/data/
+**/.DS_Store
