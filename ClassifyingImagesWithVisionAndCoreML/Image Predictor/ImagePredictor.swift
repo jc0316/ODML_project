@@ -25,7 +25,7 @@ class ImagePredictor {
 
         // Create an instance of the image classifier's wrapper class.
         
-        let imageClassifierWrapper = try? model(configuration: defaultConfig)
+        let imageClassifierWrapper = try? pruned_model_7(configuration: defaultConfig)
         //let imageClassifierWrapper = try? MobileNet(configuration: defaultConfig)
 
         guard let imageClassifier = imageClassifierWrapper else {

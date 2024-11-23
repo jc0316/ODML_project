@@ -98,7 +98,7 @@ extension MainViewController {
                     }
                 
                 } else {
-                    print("Image Failed to Load: \(imageName)")
+                    
                 }
             }
         }
