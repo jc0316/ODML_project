@@ -14,11 +14,8 @@
 		7C1CDF2C2CB95FB500B7BAEF /* model_resnet18_200.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7C1CDF2B2CB95FB500B7BAEF /* model_resnet18_200.mlmodel */; };
 		7C38BA042CD1B570002C53AA /* model_original_int8_static_linear.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7C38BA022CD1B570002C53AA /* model_original_int8_static_linear.mlmodel */; };
 		7C7389E92CF3E71500E3131E /* ResNet50_SignLanguage.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7C7389E82CF3E71500E3131E /* ResNet50_SignLanguage.mlmodel */; };
-		7C738A0B2CF422D600E3131E /* second_order_pruned_resnet50_0.2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7C738A0A2CF422D600E3131E /* second_order_pruned_resnet50_0.2.mlmodel */; };
-		7C738A0D2CF422E700E3131E /* second_order_pruned_resnet50_0.4.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7C738A0C2CF422E700E3131E /* second_order_pruned_resnet50_0.4.mlmodel */; };
-		7C738A0F2CF422ED00E3131E /* second_order_pruned_resnet50_0.6.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7C738A0E2CF422ED00E3131E /* second_order_pruned_resnet50_0.6.mlmodel */; };
-		7C738A112CF422F300E3131E /* second_order_pruned_resnet50_0.8.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7C738A102CF422F300E3131E /* second_order_pruned_resnet50_0.8.mlmodel */; };
 		7CA48C0A2CB8307C00F2F393 /* model_original.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7CA48C092CB8307C00F2F393 /* model_original.mlmodel */; };
+		7CD31DBF2CF4DD3B00A56657 /* ResNet50_pruned30.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 7CD31DBE2CF4DD3A00A56657 /* ResNet50_pruned30.mlmodel */; };
 		EB6D4EB526BA5A0000DCF755 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB6D4EB326BA5A0000DCF755 /* LaunchScreen.storyboard */; };
 		EB6D4EBA26BA5A2F00DCF755 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB6D4EB826BA5A2F00DCF755 /* Main.storyboard */; };
 		EB9D7ECA26C2D39400039949 /* MainViewController+PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9D7EC926C2D39400039949 /* MainViewController+PhotoPicker.swift */; };
@@ -38,11 +35,8 @@
 		7C1CDF2B2CB95FB500B7BAEF /* model_resnet18_200.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = model_resnet18_200.mlmodel; sourceTree = "<group>"; };
 		7C38BA022CD1B570002C53AA /* model_original_int8_static_linear.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = model_original_int8_static_linear.mlmodel; sourceTree = "<group>"; };
 		7C7389E82CF3E71500E3131E /* ResNet50_SignLanguage.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ResNet50_SignLanguage.mlmodel; sourceTree = "<group>"; };
-		7C738A0A2CF422D600E3131E /* second_order_pruned_resnet50_0.2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = second_order_pruned_resnet50_0.2.mlmodel; sourceTree = "<group>"; };
-		7C738A0C2CF422E700E3131E /* second_order_pruned_resnet50_0.4.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = second_order_pruned_resnet50_0.4.mlmodel; sourceTree = "<group>"; };
-		7C738A0E2CF422ED00E3131E /* second_order_pruned_resnet50_0.6.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = second_order_pruned_resnet50_0.6.mlmodel; sourceTree = "<group>"; };
-		7C738A102CF422F300E3131E /* second_order_pruned_resnet50_0.8.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = second_order_pruned_resnet50_0.8.mlmodel; sourceTree = "<group>"; };
 		7CA48C092CB8307C00F2F393 /* model_original.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = model_original.mlmodel; sourceTree = "<group>"; };
+		7CD31DBE2CF4DD3A00A56657 /* ResNet50_pruned30.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ResNet50_pruned30.mlmodel; sourceTree = "<group>"; };
 		83D09BCE84BD8F0B0100E8B3 /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		C858E5CC1ECA99CC006C5CAA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EB6D4EB426BA5A0000DCF755 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -132,10 +126,7 @@
 				7CA48C092CB8307C00F2F393 /* model_original.mlmodel */,
 				7C38BA022CD1B570002C53AA /* model_original_int8_static_linear.mlmodel */,
 				7C7389E82CF3E71500E3131E /* ResNet50_SignLanguage.mlmodel */,
-				7C738A0A2CF422D600E3131E /* second_order_pruned_resnet50_0.2.mlmodel */,
-				7C738A0C2CF422E700E3131E /* second_order_pruned_resnet50_0.4.mlmodel */,
-				7C738A0E2CF422ED00E3131E /* second_order_pruned_resnet50_0.6.mlmodel */,
-				7C738A102CF422F300E3131E /* second_order_pruned_resnet50_0.8.mlmodel */,
+				7CD31DBE2CF4DD3A00A56657 /* ResNet50_pruned30.mlmodel */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -230,20 +221,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C738A0F2CF422ED00E3131E /* second_order_pruned_resnet50_0.6.mlmodel in Sources */,
 				EBE769EA26CC7DDD002B6CF0 /* VNClassificationObservation+confidenceString.swift in Sources */,
 				EB9D7ECA26C2D39400039949 /* MainViewController+PhotoPicker.swift in Sources */,
 				11063F741EC0F5270033EE6D /* CGImagePropertyOrientation+UIImageOrientation.swift in Sources */,
+				7CD31DBF2CF4DD3B00A56657 /* ResNet50_pruned30.mlmodel in Sources */,
 				7C7389E92CF3E71500E3131E /* ResNet50_SignLanguage.mlmodel in Sources */,
 				11063F641EC0EECC0033EE6D /* MainViewController.swift in Sources */,
 				7C38BA042CD1B570002C53AA /* model_original_int8_static_linear.mlmodel in Sources */,
 				11063F621EC0EECC0033EE6D /* AppDelegate.swift in Sources */,
-				7C738A0B2CF422D600E3131E /* second_order_pruned_resnet50_0.2.mlmodel in Sources */,
-				7C738A112CF422F300E3131E /* second_order_pruned_resnet50_0.8.mlmodel in Sources */,
 				EB9D7ECE26C2D78300039949 /* ImagePredictor.swift in Sources */,
 				7CA48C0A2CB8307C00F2F393 /* model_original.mlmodel in Sources */,
 				EB9D7ECC26C2D5F800039949 /* MainViewController+CameraPicker.swift in Sources */,
-				7C738A0D2CF422E700E3131E /* second_order_pruned_resnet50_0.4.mlmodel in Sources */,
 				7C1CDF2C2CB95FB500B7BAEF /* model_resnet18_200.mlmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

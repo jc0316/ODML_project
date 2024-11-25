@@ -51,7 +51,7 @@ extension MainViewController {
 
         // Create an instance of the image classifier's wrapper class.
         
-        let imageClassifierWrapper = try? second_order_pruned_resnet50_0_2(configuration: defaultConfig)
+        let imageClassifierWrapper = try? ResNet50_pruned30(configuration: defaultConfig)
         //let imageClassifierWrapper = try? MobileNet(configuration: defaultConfig)
 
         guard let imageClassifier = imageClassifierWrapper else {

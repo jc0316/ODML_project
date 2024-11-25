@@ -1,0 +1,1 @@
+/Users/briancurtin/Documents/GitHub/ODML_project/models/pruned_model_2.mlpackage
