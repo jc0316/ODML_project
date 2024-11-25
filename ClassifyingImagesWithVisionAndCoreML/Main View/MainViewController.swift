@@ -51,7 +51,7 @@ extension MainViewController {
 
         // Create an instance of the image classifier's wrapper class.
         
-        let imageClassifierWrapper = try? model_original_int8_static_linear(configuration: defaultConfig)
+        let imageClassifierWrapper = try? second_order_pruned_resnet50_0_2(configuration: defaultConfig)
         //let imageClassifierWrapper = try? MobileNet(configuration: defaultConfig)
 
         guard let imageClassifier = imageClassifierWrapper else {
@@ -67,6 +67,7 @@ extension MainViewController {
         }
         
         var inferenceTime: [Double] = []
+        var newInferenceTime: [Double] = []
         
         var correctPredictions: Int = 0
         var totalPredictions: Int = 0
@@ -76,19 +77,20 @@ extension MainViewController {
             for number in 1...3000 {
                 let imageName = type + String(number)
                 if let testImage = UIImage(named: imageName) {
-                    print("Image Loaded: \(imageName)")
+                    //print("Image Loaded: \(imageName)")
                     
+                    let newStartTime = Date()
                     classifyImage(testImage, model: imageClassifierVisionModel, correctString: type) { result, time, error in
                             if let error = error {
                                 // Handle error case
                                 print("Error:", error.localizedDescription)
                             } else if let result = result, let time = time {
                                 // Handle success case
-                                print("Classification result:", result)
-                                print("Computation time:", time, "seconds")
+                                //print("Classification result:", result)
+                                //print("Computation time:", time, "seconds")
                             } else {
                                 // Handle unexpected cases if needed
-                                print("Unexpected result with no errors.")
+                                //print("Unexpected result with no errors.")
                             }
                             if result!.contains(type){
                                 correctPredictions += 1
@@ -96,16 +98,22 @@ extension MainViewController {
                             totalPredictions += 1
                             inferenceTime.append(time!)
                     }
-                
+                    // let newEndTime = Date()
+                    // let newComputationTime = newEndTime.timeIntervalSince(newStartTime)
+                    // newInferenceTime.append(newComputationTime)
+                    // print(newComputationTime)
                 } else {
                     
                 }
             }
         }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
-            //call any function
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            let averageInference = Double(inferenceTime.reduce(0,+))/Double(inferenceTime.count)
+            
             print("Inference Time:")
             print(inferenceTime)
+            print("Average Inference Time:")
+            print(averageInference)
             print("Model Accuracy:")
             print(Double(correctPredictions)/Double(totalPredictions))
         }
@@ -227,20 +235,20 @@ extension MainViewController {
         
         // Create a VNCoreMLRequest with the provided model
         let request = VNCoreMLRequest(model: model) { (request, error) in
-            // End time measurement
-            let endTime = Date()
-            let computationTime = endTime.timeIntervalSince(startTime)
             
             if let error = error {
-                completion(nil, computationTime, error)
+                completion(nil, nil, error)
                 return
             }
             
             // Process classification results
             guard let results = request.results as? [VNClassificationObservation], let topResult = results.first else {
-                completion(nil, computationTime, NSError(domain: "ClassificationError", code: -1, userInfo: [NSLocalizedDescriptionKey: "No classification results found"]))
+                completion(nil, nil, NSError(domain: "ClassificationError", code: -1, userInfo: [NSLocalizedDescriptionKey: "No classification results found"]))
                 return
             }
+            // End time measurement
+            let endTime = Date()
+            let computationTime = endTime.timeIntervalSince(startTime)
             
             // Return the top classification result along with computation time
             completion(topResult.identifier, computationTime, nil)
